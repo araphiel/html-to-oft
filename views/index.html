@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>HTML to Outlook</title>
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  <body>
+    <header>
+      <h1>HTML to OFT</h1>
+    </header>
+    <main>
+      <p>
+        Upload an HTML file to convert it into Outlook compatible formats.
+        <br>
+        <small>
+          Instead of using .oft files, we use .eml (editable on Outlook PC) and .emltpl (editable on Outlook Mac) files which offer greater flexibility.
+        </small>
+      </p>
+    
+      <form action="/upload" method="post" enctype="multipart/form-data">
+        <label>
+          Upload File
+          <input type="file" name="emailFile" accept="text/html" required>
+        </label>
+        <button type="submit">Add File</button>
+      </form>
+
+      <hr>
+      <small>Built by <a href="https://github.com/araphiel">Armon Raphiel</a></small>
+    </main>
+  </body>
+</html>
