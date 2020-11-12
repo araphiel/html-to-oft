@@ -1,5 +1,5 @@
 {
-  "name": "hello-express",
+  "name": "email-to-oft",
   "version": "1.0.0",
   "description": "Convert your HTML emails into editable Outlook compatible files",
   "main": "server.js",
@@ -7,9 +7,10 @@
     "start": "node server.js"
   },
   "dependencies": {
+    "archiver": "^5.0.2",
     "express": "^4.17.1",
-    "express-fileupload": "^1.1.10",
-    "archiver": "^5.0.0"
+    "express-fileupload": "^1.2.0",
+    "he": "^1.2.0"
   },
   "license": "MIT",
   "keywords": [
