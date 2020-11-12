@@ -1,7 +1,7 @@
-const fs = require("fs");
 const express = require("express");
 const fileUpload = require("express-fileupload");
 const archiver = require("archiver");
+const he = require("he")
 
 const app = express();
 
@@ -22,7 +22,7 @@ app.post("/upload", (request, response) => {
   // Get email data
   const { emailFile } = request.files;
   const emailHTML = emailFile.data.toString("utf8");
-  
+
   const filename = emailFile.name
   const basename = filename.replace('.html', '')
 
@@ -30,7 +30,8 @@ app.post("/upload", (request, response) => {
   const emailTitle = getEmailTitle(emailHTML);
 
   // Get formatted email
-  const parsedEmlData = emlFormat(emailTitle, emailHTML);
+  const encodedHTML = he.encode(emailHTML, { allowUnsafeSymbols: true })
+  const parsedEmlData = emlFormat(emailTitle, encodedHTML);
 
   // Create zip archive
   const archive = archiver("zip");
@@ -61,7 +62,9 @@ const listener = app.listen(process.env.PORT, () => {
 
 // Helper functions
 function getEmailTitle(string) {
-  if (!string.match(/<title>(.+)<\/title>/)) return;
+  if (!string.match(/<title>(.+)<\/title>/)) 
+    return '';
+
   return string.match(/<title>(.+)<\/title>/)[1];
 }
 
